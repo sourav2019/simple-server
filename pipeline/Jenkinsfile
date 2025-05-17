@@ -17,7 +17,7 @@
 //     sh 'docker build -t mukeshphulwani66/pipelinedemo:${BUILD_NUMBER} .'
 //   }
 //   stage('deploy to docker hub'){
-//     withCredentials([usernamePassword(credentialsId: 'dockerhubcred', usernameVariable: 'USERNAME_DOC', passwordVariable: 'PASSWORD_DOC')]) {
+//     withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USERNAME_DOC', passwordVariable: 'PASSWORD_DOC')]) {
 //        sh 'docker login -u ${USERNAME_DOC} -p ${PASSWORD_DOC}'
 //        sh 'docker image push mukeshphulwani66/pipelinedemo:${BUILD_NUMBER}'
 //    }
@@ -70,7 +70,7 @@ pipeline {
         
         stage('deploy to docker hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhubcred', usernameVariable: 'USERNAME_DOC', passwordVariable: 'PASSWORD_DOC')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'USERNAME_DOC', passwordVariable: 'PASSWORD_DOC')]) {
                     sh 'docker login -u ${USERNAME_DOC} -p ${PASSWORD_DOC}'
                     sh 'docker image push ${IMAGE_NAME_DOC}'
                 }
